@@ -1,0 +1,21 @@
+<mat-card class="task-card">
+  <mat-card-content>
+    <div class="task-header">
+      <h3>{{ title }}</h3>
+      <span class="status" [ngClass]="status.toLowerCase()">{{ status }}</span>
+    </div>
+    <p class="description">{{ description }}</p>
+    <p class="creation-date">Fecha de creación: {{ creationDate | date }}</p>
+
+    <div class="actions">
+      <mat-form-field appearance="fill" class="status-select">
+        <mat-label>Cambiar de estado</mat-label>
+        <mat-select [value]="status" (onStatusChange)="onStatusChange($event)">
+          <mat-option *ngFor="let option of statuses" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

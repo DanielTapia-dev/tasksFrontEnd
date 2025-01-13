@@ -1,30 +1,44 @@
-<header class="mat-elevation-z1">
-  <img
-    alt="Logo de ATOM Chat"
-    ngSrc="assets/images/logo-atom-chat.png"
-    width="192.5"
-    height="55"
-  />
-</header>
-<div class="welcome-container">
-  <p>
-    <br /><br />
-    Es un placer darte la bienvenida a esta fase crucial de nuestro proceso de
-    selección. Esperamos que te encuentres emocionado por enfrentar este desafío
-    técnico y demostrar todo tu talento y habilidades.
-    <br /><br />
-    Queremos recordarte que las indicaciones detalladas para esta prueba se
-    encuentran en el documento del reto técnico que te hemos proporcionado. Te
-    pedimos que sigas cada instrucción cuidadosamente para garantizar una
-    evaluación justa y precisa de tu trabajo.
-    <br /><br />
-    Estamos seguros de que tienes el conocimiento, la experiencia y la
-    determinación necesarios para superar este desafío con éxito. Confiamos en
-    tus habilidades y estamos ansiosos por ver todo lo que puedes lograr.
-    <br /><br />
-    Te deseamos mucho éxito en esta prueba técnica. ¡Estamos seguros de que
-    dejarás una impresión duradera y nos sorprenderás con tus capacidades!
-  </p>
-  <br />
-  <p class="good-luck-txt">¡Adelante y buena suerte!</p>
+<div class="toolbar">
+  <mat-form-field appearance="outline" class="search-bar">
+    <mat-icon matPrefix>search</mat-icon>
+    <input class="search-input" matInput placeholder="Buscar tarea..." />
+  </mat-form-field>
+
+  <div class="view-toggle-buttons">
+    <button
+      mat-icon-button
+      [disabled]="viewMode === 'grid'"
+      (click)="setViewMode('grid')"
+    >
+      <mat-icon>grid_view</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [disabled]="viewMode === 'list'"
+      (click)="setViewMode('list')"
+    >
+      <mat-icon>list</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="task-dashboard">
+  <div class="task-list" *ngIf="viewMode === 'list'">
+    <app-task-card
+      *ngFor="let task of tasks"
+      [title]="task.title"
+      [description]="task.description"
+      [status]="task.status"
+      [creationDate]="task.creationDate"
+    ></app-task-card>
+  </div>
+  <div class="task-grid" *ngIf="viewMode === 'grid'">
+    <app-task-card
+      *ngFor="let task of tasks"
+      [title]="task.title"
+      [description]="task.description"
+      [status]="task.status"
+      [creationDate]="task.creationDate"
+    ></app-task-card>
+  </div>
 </div>
