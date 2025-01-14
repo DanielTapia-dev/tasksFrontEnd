@@ -17,7 +17,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatLabel,
     MatSelectModule,
     MatOption,
-    NoopAnimationsModule,
   ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',

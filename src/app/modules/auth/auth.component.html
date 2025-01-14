@@ -4,24 +4,24 @@
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
-        <!-- Email Input -->
+      <form [formGroup]="loginForm">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Email</mat-label>
           <input
             matInput
             type="email"
+            formControlName="email"
             placeholder="Enter your email"
             required
           />
           <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
 
-        <!-- Login Button -->
         <button
           mat-raised-button
           color="primary"
           class="full-width"
+          type="button"
           (click)="login()"
         >
           Login

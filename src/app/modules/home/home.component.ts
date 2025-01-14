@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { TaskCardComponent } from '../../shared/card-task/task-card.component';
 import {
   MatFormField,
+  MatFormFieldModule,
   MatLabel,
-  MatPrefix,
 } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -15,12 +15,12 @@ import { MatInputModule } from '@angular/material/input';
   standalone: true,
   imports: [
     CommonModule,
-    MatButton,
     TaskCardComponent,
-    MatFormField,
     MatLabel,
     MatIconModule,
     MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
