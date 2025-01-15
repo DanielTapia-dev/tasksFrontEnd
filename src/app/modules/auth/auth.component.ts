@@ -13,6 +13,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { User } from '../../interfaces/auth.interface';
+import Swal from 'sweetalert2';
+import { catchError, of, switchMap } from 'rxjs';
+import { AlertService } from '../../services/alert.service';
+import { messages } from '../../constants/message.constants';
 
 @Component({
   selector: 'app-auth',
@@ -35,7 +40,8 @@ export class AuthComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -43,17 +49,43 @@ export class AuthComponent {
   }
 
   login() {
-    if (this.loginForm.valid) {
-      const email = this.loginForm.value.email; // Obtener el email
-      this.authService.getUser(email).subscribe({
-        next: (resp) => {
-          console.log('Error fetching user:', resp);
-          this.router.navigate(['./home']);
-        },
-        error: (err) => console.error('Error fetching user:', err),
+    if (this.loginForm.invalid) {
+      Swal.fire({
+        title: messages.formInvalid.title,
+        text: messages.formInvalid.text,
+        icon: 'error',
+        confirmButtonText: messages.formInvalid.textButton,
       });
-    } else {
-      console.log('Invalid form');
+      return;
     }
+
+    const user: User = this.loginForm.value;
+
+    this.authService
+      .getUser(user.email)
+      .pipe(
+        switchMap((resp) => {
+          if (!resp.exists) {
+            return this.authService
+              .createUser(user)
+              .pipe(switchMap(() => of(messages.status.created)));
+          }
+          return of(messages.status.existing);
+        }),
+        catchError((err) => {
+          this.alertService.showError(messages.authError);
+          return of(null);
+        })
+      )
+      .subscribe((status) => {
+        if (status === messages.status.created) {
+          this.alertService.showSuccess(messages.userCreatedSuccess);
+        } else if (status === messages.status.existing) {
+          this.alertService.showSuccess(messages.loginSuccess);
+        }
+        if (status) {
+          this.router.navigate(['./home']);
+        }
+      });
   }
 }

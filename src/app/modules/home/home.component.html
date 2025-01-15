@@ -1,44 +1,77 @@
-<div class="toolbar">
-  <mat-form-field appearance="outline" class="search-bar">
-    <mat-icon matPrefix>search</mat-icon>
-    <input class="search-input" matInput placeholder="Buscar tarea..." />
-  </mat-form-field>
-
-  <div class="view-toggle-buttons">
-    <button
-      mat-icon-button
-      [disabled]="viewMode === 'grid'"
-      (click)="setViewMode('grid')"
-    >
-      <mat-icon>grid_view</mat-icon>
+<div class="container">
+  <header class="mat-elevation-z1 header-container">
+    <button (click)="toggleLeftSidebar()" class="open-sidebar-btn">
+      <mat-icon class="mat-18">menu</mat-icon>
     </button>
-    <button
-      mat-icon-button
-      [disabled]="viewMode === 'list'"
-      (click)="setViewMode('list')"
-    >
-      <mat-icon>list</mat-icon>
-    </button>
-  </div>
-</div>
+    <div class="flex content">
+      <img
+        class="atom-logo"
+        alt="Logo de ATOM Chat"
+        src="/assets/images/logo-atom-chat.png"
+        width="140"
+      />
+    </div>
+  </header>
 
-<div class="task-dashboard">
-  <div class="task-list" *ngIf="viewMode === 'list'">
-    <app-task-card
-      *ngFor="let task of tasks"
-      [title]="task.title"
-      [description]="task.description"
-      [status]="task.status"
-      [creationDate]="task.creationDate"
-    ></app-task-card>
+  <div
+    class="sidebar left-sidebar"
+    [class.active]="isLeftSidebarOpen"
+    [class.collapsed]="!isLeftSidebarOpen"
+  >
+    <ul class="menu">
+      <li>
+        <mat-icon>home</mat-icon>
+        <span *ngIf="isLeftSidebarOpen">Inicio</span>
+      </li>
+      <li (click)="logout()" (keydown.enter)="logout()" tabindex="0">
+        <mat-icon>logout</mat-icon>
+        <span *ngIf="isLeftSidebarOpen">Log out</span>
+      </li>
+    </ul>
   </div>
-  <div class="task-grid" *ngIf="viewMode === 'grid'">
-    <app-task-card
-      *ngFor="let task of tasks"
-      [title]="task.title"
-      [description]="task.description"
-      [status]="task.status"
-      [creationDate]="task.creationDate"
-    ></app-task-card>
+
+  <div class="main-content" [class.sidebar-open]="isLeftSidebarOpen">
+    <div class="toolbar">
+      <mat-form-field appearance="outline" class="search-bar">
+        <mat-icon matPrefix>search</mat-icon>
+        <input class="search-input" matInput placeholder="Buscar tarea..." />
+      </mat-form-field>
+
+      <div class="view-toggle-buttons">
+        <button
+          mat-icon-button
+          [disabled]="viewMode === 'grid'"
+          (click)="setViewMode('grid')"
+        >
+          <mat-icon>grid_view</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          [disabled]="viewMode === 'list'"
+          (click)="setViewMode('list')"
+        >
+          <mat-icon>list</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="task-dashboard">
+      <div class="task-list" *ngIf="viewMode === 'list'">
+        <app-task-card
+          *ngFor="let task of tasks"
+          [title]="task.title"
+          [description]="task.description"
+          [status]="task.status"
+        ></app-task-card>
+      </div>
+      <div class="task-grid" *ngIf="viewMode === 'grid'">
+        <app-task-card
+          *ngFor="let task of tasks"
+          [title]="task.title"
+          [description]="task.description"
+          [status]="task.status"
+        ></app-task-card>
+      </div>
+    </div>
   </div>
 </div>

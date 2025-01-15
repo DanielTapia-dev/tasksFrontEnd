@@ -1,7 +1,19 @@
-header {
-  background-color: white;
+.content-wrapper {
+  max-height: calc(94vh);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+footer {
+  height: 45px;
+  width: 100%;
+  text-align: center;
+  background-color: #f4f4f4;
+  font-size: 12px;
+  color: #333;
+  display: flex;
   align-items: center;
-  padding: 0 3rem;
+  justify-content: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }

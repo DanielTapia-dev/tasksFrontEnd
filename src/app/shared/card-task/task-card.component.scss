@@ -16,16 +16,16 @@
   text-transform: capitalize;
 }
 
-.status.done {
+.status.completada {
   background-color: #4caf50;
 }
 
-.status.pending {
+.status.pendiente {
   background-color: #ff9800;
 }
 
-.status.in-progress {
-  background-color: #2196f3;
+.status.eliminada {
+  background-color: red;
 }
 
 .description {

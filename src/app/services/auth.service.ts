@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
+import { UserResponse } from '../interfaces/auth-response.interface';
+import { User } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,10 @@ export class AuthService {
 
   getUser(userEmail: string) {
     const url = `${this.baseUrl}${userEmail}`;
-    return this.http.get(url);
+    return this.http.get<UserResponse>(url);
+  }
+
+  createUser(user: User) {
+    return this.http.post<User>(this.baseUrl, user);
   }
 }

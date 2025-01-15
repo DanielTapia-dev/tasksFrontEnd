@@ -5,6 +5,7 @@ import { MatOption } from '@angular/material/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Task } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-task-card',
@@ -25,7 +26,10 @@ export class TaskCardComponent {
   @Input() title: string = '';
   @Input() description: string = '';
   @Input() status: string = '';
-  @Input() creationDate: Date = new Date();
+  @Input() creationDate: {
+    seconds: number;
+    nanoseconds: number;
+  } = { seconds: 0, nanoseconds: 0 };
   @Output() statusChanged = new EventEmitter<string>();
 
   statuses = ['Pending', 'In Progress', 'Done'];
