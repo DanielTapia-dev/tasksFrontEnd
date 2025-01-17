@@ -11,11 +11,23 @@ export class TaskService {
 
   private baseUrl = `${environment.apiUrl}task/`;
 
-  getAllTasks() {
+  getAll() {
     return this.http.get<Task[]>(this.baseUrl);
   }
 
-  createTask(task: Task) {
+  getAllActive() {
+    return this.http.get<Task[]>(`${this.baseUrl}active`);
+  }
+
+  getAllByUser(email: string) {
+    return this.http.get<Task[]>(`${this.baseUrl}${email}`);
+  }
+
+  create(task: Task) {
     return this.http.post<Task>(this.baseUrl, task);
+  }
+
+  update(task: Task, id: string) {
+    return this.http.put<Task>(`${this.baseUrl}${id}`, task);
   }
 }

@@ -1,0 +1,44 @@
+<div
+  class="overlay"
+  (keydown.enter)="handleToggle()"
+  tabindex="0"
+  *ngIf="isOpen"
+  (click)="handleToggle()"
+></div>
+<div class="sidebar" [class.active]="isOpen">
+  <div class="sidebar-header">
+    <button mat-icon-button class="exit-btn" (click)="handleToggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <ul>
+    <li
+      (keydown.enter)="handleToggle()"
+      tabindex="1"
+      (click)="navigateTo('/home')"
+      tabindex="0"
+    >
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </li>
+    <li
+      *ngIf="hasRole('administrador')"
+      (keydown.enter)="handleToggle()"
+      tabindex="2"
+      (click)="navigateTo('/dashboard')"
+      tabindex="0"
+    >
+      <mat-icon>dashboard</mat-icon>
+      <span>Administrador</span>
+    </li>
+    <li
+      (keydown.enter)="handleToggle()"
+      tabindex="3"
+      (click)="logout()"
+      tabindex="0"
+    >
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </li>
+  </ul>
+</div>

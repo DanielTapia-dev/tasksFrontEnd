@@ -80,8 +80,10 @@ export class AuthComponent {
       .subscribe((status) => {
         if (status === messages.status.created) {
           this.alertService.showSuccess(messages.userCreatedSuccess);
+          localStorage.setItem('userEmail', user.email);
         } else if (status === messages.status.existing) {
           this.alertService.showSuccess(messages.loginSuccess);
+          localStorage.setItem('userEmail', user.email);
         }
         if (status) {
           this.router.navigate(['./home']);

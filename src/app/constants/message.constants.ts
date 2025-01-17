@@ -7,7 +7,7 @@ export const messages = {
   },
   authError: 'Ocurrió un problema durante el proceso de autenticación.',
   userCreatedSuccess: 'Usuario creado e ingreso exitoso!',
-  loginSuccess: 'Ingreso exitoso!',
+  loginSuccess: 'Usuario ya existente, Ingreso exitoso!',
   status: {
     created: 'created',
     existing: 'existing',

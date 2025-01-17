@@ -3,8 +3,9 @@ export interface Task {
   title: string;
   description: string;
   status: string;
-  creationDate?: {
+  creationDate: {
     seconds: number;
     nanoseconds: number;
   };
+  userEmail: string;
 }

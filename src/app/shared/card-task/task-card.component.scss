@@ -1,5 +1,6 @@
 .task-card {
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   margin-top: 10px;
@@ -44,4 +45,90 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.task-complete-button {
+  background: linear-gradient(45deg, var(--accent-color), #0078d4);
+  color: white !important;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(45deg, #005fa3, #0055c3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.task-delete-button {
+  background: linear-gradient(45deg, #ff4b4b, #c40000);
+  color: white !important;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(45deg, #c40000, #a30000);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.task-edit-button {
+  background: linear-gradient(45deg, #4caf50, #2e7d32);
+  color: white !important;
+  padding: 8px;
+  border: none;
+  border-radius: 20%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: linear-gradient(45deg, #2e7d32, #1b5e20);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.task-edit-button mat-icon {
+  font-size: 24px;
 }

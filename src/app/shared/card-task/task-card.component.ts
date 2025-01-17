@@ -4,8 +4,8 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatOption } from '@angular/material/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Task } from '../../interfaces/task.interface';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-card',
@@ -18,28 +18,33 @@ import { Task } from '../../interfaces/task.interface';
     MatLabel,
     MatSelectModule,
     MatOption,
+    MatIconModule,
   ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
 })
 export class TaskCardComponent {
-  @Input() title: string = '';
-  @Input() description: string = '';
-  @Input() status: string = '';
-  @Input() creationDate: {
-    seconds: number;
-    nanoseconds: number;
-  } = { seconds: 0, nanoseconds: 0 };
+  @Input() task: Task = {
+    id: '',
+    title: '',
+    description: '',
+    status: '',
+    userEmail: '',
+    creationDate: { seconds: 0, nanoseconds: 0 },
+  };
   @Output() statusChanged = new EventEmitter<string>();
+  @Output() showTaskForm = new EventEmitter<string>();
+  @Output() showTaskToUpdateForm = new EventEmitter<Task>();
 
-  statuses = ['Pending', 'In Progress', 'Done'];
-
-  changeStatus(newStatus: string) {
-    this.statusChanged.emit(newStatus);
+  updateTask(status: string) {
+    this.statusChanged.emit(status);
   }
 
-  onStatusChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    this.changeStatus(selectElement.value);
+  updateAllTask(status: string) {
+    this.showTaskForm.emit(status);
+  }
+
+  updateDataTask() {
+    this.showTaskToUpdateForm.emit(this.task);
   }
 }

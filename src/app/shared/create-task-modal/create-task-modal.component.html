@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="taskForm">
+    <div>
+      <label for="title">Título</label>
+      <input id="title" formControlName="title" />
+      <div
+        *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.invalid"
+      >
+        <small *ngIf="taskForm.get('title')?.errors?.['required']"
+          >El título es obligatorio.</small
+        >
+        <small *ngIf="taskForm.get('title')?.errors?.['minlength']">
+          El título debe tener al menos 3 caracteres.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Descripción</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div
+        *ngIf="
+          taskForm.get('description')?.touched &&
+          taskForm.get('description')?.invalid
+        "
+      >
+        <small *ngIf="taskForm.get('description')?.errors?.['required']">
+          La descripción es obligatoria.
+        </small>
+        <small *ngIf="taskForm.get('description')?.errors?.['minlength']">
+          La descripción debe tener al menos 5 caracteres.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="status">Estado</label>
+      <select id="status" formControlName="status">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Completada">Completada</option>
+      </select>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="createOrUpdateTask()"
+    [disabled]="taskForm.invalid"
+  >
+    {{ data.task ? "Actualizar Tarea" : "Crear Tarea" }}
+  </button>
+</mat-dialog-actions>

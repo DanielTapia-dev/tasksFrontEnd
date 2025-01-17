@@ -1,21 +1,47 @@
 <mat-card class="task-card">
   <mat-card-content>
     <div class="task-header">
-      <h3>{{ title }}</h3>
-      <span class="status" [ngClass]="status.toLowerCase()">{{ status }}</span>
+      <h3>{{ task.title }}</h3>
+      <span class="status" [ngClass]="task.status.toLowerCase()">{{
+        task.status
+      }}</span>
     </div>
-    <p class="description">{{ description }}</p>
-    <p class="creation-date">Fecha de creación: {{ creationDate }}</p>
+    <p class="description">{{ task.description }}</p>
+    <p class="creation-date">
+      Fecha de creación:
+      {{ task.creationDate.seconds * 1000 | date : "dd/MM/yyyy, hh:mm a" }}
+    </p>
 
     <div class="actions">
-      <mat-form-field appearance="fill" class="status-select">
-        <mat-label>Cambiar de estado</mat-label>
-        <mat-select [value]="status" (onStatusChange)="onStatusChange($event)">
-          <mat-option *ngFor="let option of statuses" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="button-row">
+        <button
+          mat-raised-button
+          color="accent"
+          class="task-complete-button"
+          *ngIf="task.status !== 'Completada'"
+          (click)="updateTask('Completada')"
+        >
+          Completar
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          class="task-delete-button"
+          *ngIf="task.status !== 'Eliminada'"
+          (click)="updateTask('Eliminada')"
+        >
+          Borrar
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          class="task-edit-button"
+          *ngIf="task.status !== 'Eliminada'"
+          (click)="updateDataTask()"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

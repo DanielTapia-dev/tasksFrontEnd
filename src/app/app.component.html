@@ -1,6 +1,19 @@
-<div class="content-wrapper">
-  <router-outlet></router-outlet>
+<div class="container">
+  <!-- Header -->
+  <app-header (toggleSidebar)="toggleLeftSidebar()"></app-header>
+
+  <!-- Sidebar -->
+  <app-sidebar
+    [class.active]="isLeftSidebarOpen"
+    [isOpen]="isLeftSidebarOpen"
+    (toggleSidebar)="toggleLeftSidebar()"
+  ></app-sidebar>
+
+  <!-- Main Content -->
+  <div class="main-content" [class.sidebar-closed]="!isLeftSidebarOpen">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 <footer>
-  <p class="footer-text">Hello, atom-challenge-fe-template</p>
+  <p class="footer-text">{{ title }}</p>
 </footer>
