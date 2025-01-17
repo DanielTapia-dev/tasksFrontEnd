@@ -1,5 +1,10 @@
+<app-header (toggleSidebar)="toggleLeftSidebar()"></app-header>
+<app-sidebar
+  [class.active]="isLeftSidebarOpen"
+  [isOpen]="isLeftSidebarOpen"
+  (toggleSidebar)="toggleLeftSidebar()"
+></app-sidebar>
 <div class="container">
-  <!-- Main Content -->
   <div class="main-content" [class.sidebar-closed]="!isLeftSidebarOpen">
     <div class="toolbar">
       <mat-form-field appearance="outline" class="search-bar">

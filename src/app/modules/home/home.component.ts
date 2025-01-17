@@ -18,15 +18,12 @@ import { AlertService } from '../../services/alert.service';
   selector: 'app-home',
   standalone: true,
   imports: [
-    // Angular Common Modules
     CommonModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatDialogModule,
-
-    // Shared Components
     HeaderComponent,
     SidebarComponent,
     TaskCardComponent,

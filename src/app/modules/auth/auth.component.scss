@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 94.2vh;
   background: linear-gradient(135deg, #3f51b5, #1e88e5);
 }
 
@@ -12,6 +12,17 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   background: #fff;
+}
+
+.login-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .full-width {

@@ -25,9 +25,4 @@ import { SidebarComponent } from './shared/sidebar.component.ts/sidebar.componen
 })
 export class AppComponent {
   title = 'Hello, atom-challenge-fe-template';
-  isLeftSidebarOpen: boolean = false;
-
-  toggleLeftSidebar() {
-    this.isLeftSidebarOpen = !this.isLeftSidebarOpen;
-  }
 }

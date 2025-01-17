@@ -4,6 +4,8 @@
   overflow: hidden;
   position: relative;
   top: 4rem;
+  height: 94.2vh;
+  overflow-y: scroll;
 }
 
 .toolbar {
@@ -110,7 +112,6 @@
   }
 }
 
-/* Botones */
 .new-task-button {
   background-color: #4caf50 !important;
   color: white !important;
@@ -123,5 +124,16 @@
   mat-icon {
     margin-right: 4px;
     font-size: 20px;
+  }
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 18rem;
+  transition: margin-left 0.3s ease;
+  margin-bottom: 4.5rem;
+
+  &.sidebar-closed {
+    margin-left: 0;
   }
 }
