@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://atom-tasks-b38b4a90eb83.herokuapp.com/',
 };
