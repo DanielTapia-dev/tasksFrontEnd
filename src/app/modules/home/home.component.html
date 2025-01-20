@@ -9,7 +9,13 @@
     <div class="toolbar">
       <mat-form-field appearance="outline" class="search-bar">
         <mat-icon matPrefix>search</mat-icon>
-        <input class="search-input" matInput placeholder="Buscar tarea..." />
+        <input
+          class="search-input"
+          matInput
+          placeholder="Buscar tarea..."
+          [(ngModel)]="searchTerm"
+          (input)="filterTasks()"
+        />
       </mat-form-field>
       <div class="view-toggle-buttons">
         <button
@@ -40,7 +46,7 @@
     <div class="task-dashboard">
       <div class="task-list" *ngIf="viewMode === 'list'">
         <app-task-card
-          *ngFor="let task of tasks"
+          *ngFor="let task of filteredTasks"
           [task]="task"
           (statusChanged)="onStatusChange(task, $event)"
           (showTaskToUpdateForm)="onDataChange(task)"
@@ -48,7 +54,7 @@
       </div>
       <div class="task-grid" *ngIf="viewMode === 'grid'">
         <app-task-card
-          *ngFor="let task of tasks"
+          *ngFor="let task of filteredTasks"
           [task]="task"
           (statusChanged)="onStatusChange(task, $event)"
           (showTaskToUpdateForm)="onDataChange(task)"

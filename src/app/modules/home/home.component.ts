@@ -13,6 +13,7 @@ import { HeaderComponent } from '../../shared/header.component.ts/header.compone
 import { SidebarComponent } from '../../shared/sidebar.component.ts/sidebar.component';
 import { TaskCardComponent } from '../../shared/task-card/task-card.component';
 import { AlertService } from '../../services/alert.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -27,12 +28,15 @@ import { AlertService } from '../../services/alert.service';
     HeaderComponent,
     SidebarComponent,
     TaskCardComponent,
+    FormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   tasks: Task[] = [];
+  filteredTasks: Task[] = [];
+  searchTerm: string = '';
   viewMode: 'grid' | 'list' = 'grid';
   isLeftSidebarOpen: boolean = false;
 
@@ -94,10 +98,19 @@ export class HomeComponent implements OnInit {
     this.taskService.getAllByUser(email).subscribe(
       (tasks) => {
         this.tasks = tasks;
+        this.filteredTasks = tasks;
       },
       (error) => {
         console.error('Error al cargar las tareas:', error);
       }
+    );
+  }
+
+  //TO-DO: Move this functionality to a PIPE
+  filterTasks(): void {
+    const lowerCaseTerm = this.searchTerm.toLowerCase();
+    this.filteredTasks = this.tasks.filter((task) =>
+      task.title.toLowerCase().includes(lowerCaseTerm)
     );
   }
 
