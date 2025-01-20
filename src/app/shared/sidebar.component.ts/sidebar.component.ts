@@ -31,7 +31,6 @@ export class SidebarComponent {
   }
 
   logout() {
-    console.log('Logout action triggered');
     this.handleToggle();
     localStorage.removeItem('userEmail');
     this.router.navigate(['/login']);

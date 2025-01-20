@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from '../../shared/header.component.ts/header.component';
 import { SidebarComponent } from '../../shared/sidebar.component.ts/sidebar.component';
-import { TaskCardComponent } from '../../shared/card-task/task-card.component';
+import { TaskCardComponent } from '../../shared/task-card/task-card.component';
 import { AlertService } from '../../services/alert.service';
 
 @Component({
@@ -56,7 +56,6 @@ export class HomeComponent implements OnInit {
   }
 
   openModal(task: Task | null = null): void {
-    console.log(task);
     if (task != null) {
       const dialogRef = this.dialog.open(CreateTaskModalComponent, {
         width: '400px',
@@ -68,7 +67,6 @@ export class HomeComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((result) => {
-        console.log(result);
         if (result) {
           this.loadActiveTasks();
         }
@@ -96,7 +94,6 @@ export class HomeComponent implements OnInit {
     this.taskService.getAllByUser(email).subscribe(
       (tasks) => {
         this.tasks = tasks;
-        console.log(this.tasks);
       },
       (error) => {
         console.error('Error al cargar las tareas:', error);

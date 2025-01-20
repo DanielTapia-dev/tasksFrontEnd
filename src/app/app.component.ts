@@ -24,5 +24,5 @@ import { SidebarComponent } from './shared/sidebar.component.ts/sidebar.componen
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Hello, atom-challenge-fe-template';
+  title = 'atom-challenge-fe-template';
 }

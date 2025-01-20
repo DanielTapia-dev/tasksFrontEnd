@@ -67,7 +67,6 @@ export class CreateTaskModalComponent {
       if (this.data.task) {
         this.taskService.update(taskData, this.data.task.id).subscribe(
           (response) => {
-            console.log('Tarea actualizada con éxito:', response);
             this.dialogRef.close(response);
           },
           (error) => {
@@ -77,7 +76,6 @@ export class CreateTaskModalComponent {
       } else {
         this.taskService.create(taskData).subscribe(
           (response) => {
-            console.log('Tarea creada con éxito:', response);
             this.dialogRef.close(response);
           },
           (error) => {
